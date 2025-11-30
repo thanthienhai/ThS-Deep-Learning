@@ -1,0 +1,382 @@
+\documentclass[a4paper]{article}
+\usepackage{vntex}
+%\usepackage[english,vietnam]{babel}
+%\usepackage[utf8]{inputenc}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[francais]{babel}
+\usepackage{a4wide,amssymb,epsfig,latexsym,array,hhline,fancyhdr}
+\usepackage[normalem]{ulem}
+%\usepackage{soul}
+
+\usepackage[makeroom]{cancel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multicol,longtable,amscd}
+\usepackage{diagbox}%Make diagonal lines in tables
+\usepackage{booktabs}
+\usepackage{alltt}
+\usepackage[framemethod=tikz]{mdframed}% For highlighting paragraph backgrounds
+\usepackage{caption,subcaption}
+
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{graphicx}							% Standard graphics package
+\usepackage{array}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage[unicode]{hyperref}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
+%\usepackage{pstcol} 								% PSTricks with the standard color package
+
+\usepackage[normalem]{ulem}
+
+\newtheorem{theorem}{{\bf Định lý}}
+\newtheorem{property}{{\bf Tính chất}}
+\newtheorem{proposition}{{\bf Mệnh đề}}
+\newtheorem{corollary}[proposition]{{\bf Hệ quả}}
+\newtheorem{lemma}[proposition]{{\bf Bổ đề}}
+\theoremstyle{definition}
+\newtheorem{exer}{Bài toán}
+
+\def\thesislayout{	% A4: 210 × 297
+	\geometry{
+		a4paper,
+		total={160mm,240mm},  % fix over page
+		left=30mm,
+		top=30mm,
+	}
+}
+\thesislayout
+
+%\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{Images/hcmut.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily Trường Đại Học Bách Khoa Tp.Hồ Chí Minh}\\
+		\textbf{\bf \ttfamily Khoa Khoa Học \& Kỹ Thuật Máy Tính}
+	\end{tabular} 	
+ \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf 
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Báo cá bài tập lớn môn Cấu trúc Rời rạc cho KHMT (CO1007) - Niên khóa 2020 - 2021}
+\fancyfoot[R]{\scriptsize \ttfamily Trang {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+%%%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+\newcounter {subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection .\@alph\c@subsubsubsection}
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
+\newcommand*{\subsubsubsectionmark}[1]{}
+\makeatother
+
+\everymath{\color{blue}}%make in-line maths symbols blue to read/check easily
+
+\sloppy
+\captionsetup[figure]{labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=-9pt}
+%space remove between caption, figure, and text
+\captionsetup[table]{labelfont={small,bf},textfont={small,it},belowskip=-1pt,aboveskip=7pt}
+%space remove between caption, table, and text
+
+%\floatplacement{figure}{H}%forced here float placement automatically for figures
+%\floatplacement{table}{H}%forced here float placement automatically for table
+%the following settings (11 lines) are to remove white space before or after the figures and tables
+%\setcounter{topnumber}{2}
+%\setcounter{bottomnumber}{2}
+%\setcounter{totalnumber}{4}
+%\renewcommand{\topfraction}{0.85}
+%\renewcommand{\bottomfraction}{0.85}
+%\renewcommand{\textfraction}{0.15}
+%\renewcommand{\floatpagefraction}{0.8}
+%\renewcommand{\textfraction}{0.1}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+\thesislayout
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH \\
+TRƯỜNG ĐẠI HỌC BÁCH KHOA \\
+KHOA KHOA HỌC \& KỸ THUẬT MÁY TÍNH 
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3cm]{Images/hcmut.png}
+\end{center}
+\end{figure}
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{tabular}{c}
+\multicolumn{1}{l}{\textbf{{\Large CẤU TRÚC RỜI RẠC CHO KHMT (CO1007)}}}\\
+~~\\
+\hline
+\\
+
+\textbf{\large Nghiên cứu mô hình BERT và ứng dụng} \\
+\textbf{\large cho bài toán phân loại cảm xúc văn bản tiếng Việt}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1.5cm}
+
+\begin{table}[h]
+\begin{tabular}{rrl}
+\hspace{5 cm} & GVHD: & Huỳnh Tường Nguyên\\
+\hspace{5 cm} &  & Nguyễn Ngọc Lễ\\
+
+& SV thực hiện: & Lê Thanh Tân -- 2014451 \\
+& & Thạch Phan Phú Hưng --  \\
+& & Nguyễn Đình Minh Đạt --  \\
+& & Lương Hồng Tiến Đạt --  \\
+& & Phúc --  \\
+\end{tabular}
+\end{table}
+\vspace{1.5cm}
+\begin{center}
+{\footnotesize Tp. Hồ Chí Minh, Tháng 04/2021}
+\end{center}
+\end{titlepage}
+
+%\thispagestyle{empty}
+\section{KHẢO SÁT VÀ PHÁT BIỂU BÀI TOÁN}
+
+\subsection{Giới thiệu vấn đề}
+Trong những năm gần đây, sự phát triển bùng nổ của Internet và các nền tảng Web 2.0 đã tạo ra một cuộc cách mạng trong việc tạo lập và chia sẻ thông tin. Mạng xã hội (như Facebook, TikTok, Twitter), các trang thương mại điện tử (như Shopee, Lazada, Amazon), và các diễn đàn trực tuyến đã trở thành những kênh giao tiếp chính yếu, nơi hàng tỷ người dùng trên toàn thế giới bày tỏ quan điểm, ý kiến, và cảm xúc của họ về mọi khía cạnh của đời sống, từ sản phẩm, dịch vụ, đến các sự kiện chính trị, xã hội. Dữ liệu văn bản được sinh ra từ các hoạt động này (User-Generated Content - UGC) mang tính chất "Big Data" với đặc điểm 3V: Volume (Dung lượng lớn), Velocity (Tốc độ tăng trưởng nhanh), và Variety (Đa dạng về định dạng) \cite{v2n4a20}.
+
+Việc khai thác nguồn dữ liệu khổng lồ này mang lại giá trị to lớn cho cả doanh nghiệp và các tổ chức. Đối với doanh nghiệp, việc thấu hiểu phản hồi của khách hàng giúp cải thiện chất lượng sản phẩm, tối ưu hóa chiến dịch marketing và nâng cao trải nghiệm người dùng. Đối với các cơ quan quản lý và tổ chức xã hội, việc giám sát dư luận (Social Listening) giúp nắm bắt kịp thời các xu hướng, phát hiện tin giả (fake news) hoặc các nội dung độc hại để có biện pháp can thiệp phù hợp. Tuy nhiên, với khối lượng dữ liệu khổng lồ và phi cấu trúc, việc phân tích thủ công là bất khả thi. Điều này đặt ra nhu cầu cấp thiết về các hệ thống tự động có khả năng "hiểu" và phân loại cảm xúc con người từ văn bản, dẫn đến sự phát triển mạnh mẽ của lĩnh vực Phân tích cảm xúc (Sentiment Analysis) \cite{2403.08217v1}.
+
+Tại Việt Nam, số lượng người dùng Internet và mạng xã hội đang tăng trưởng với tốc độ chóng mặt. Tiếng Việt, với vị thế là ngôn ngữ chính thức, trở thành đối tượng nghiên cứu quan trọng trong xử lý ngôn ngữ tự nhiên (Natural Language Processing - NLP). Tuy nhiên, tiếng Việt có những đặc trưng ngôn ngữ học phức tạp (như từ đơn âm tiết, từ ghép, thanh điệu) và sự biến đổi linh hoạt trên môi trường mạng (teencode, từ lóng, viết tắt), tạo ra những thách thức không nhỏ cho các mô hình phân tích truyền thống.
+
+Trước đây, các phương pháp tiếp cận dựa trên từ điển (Lexicon-based) hoặc các thuật toán học máy truyền thống (Machine Learning) như Support Vector Machine (SVM), Naive Bayes thường được sử dụng. Tuy nhiên, các phương pháp này bộc lộ nhiều hạn chế trong việc nắm bắt ngữ cảnh và ý nghĩa sâu xa của văn bản, đặc biệt là trong các trường hợp phức tạp như câu phủ định, câu mỉa mai, hay các cấu trúc ngữ pháp không chuẩn. Sự ra đời của các mô hình Học sâu (Deep Learning), đặc biệt là kiến trúc Transformer và mô hình BERT (Bidirectional Encoder Representations from Transformers), đã đánh dấu một bước ngoặt lớn, mở ra hướng tiếp cận mới với khả năng hiểu ngữ cảnh vượt trội, hứa hẹn giải quyết hiệu quả các bài toán NLP phức tạp, trong đó có phân loại cảm xúc tiếng Việt \cite{2011.10426v1}.
+
+\subsection{Tổng quan về bài toán phân loại cảm xúc văn bản}
+Phân tích cảm xúc (Sentiment Analysis - SA), còn được gọi là Khai phá ý kiến (Opinion Mining), là một nhánh quan trọng của Xử lý ngôn ngữ tự nhiên (NLP), Khai phá văn bản (Text Mining) và Ngôn ngữ học tính toán. Mục tiêu chính của SA là tự động xác định, trích xuất và định lượng các trạng thái tình cảm, thái độ, ý kiến hoặc đánh giá chủ quan của người viết đối với một thực thể (sản phẩm, dịch vụ, tổ chức, cá nhân, sự kiện) hoặc các thuộc tính của thực thể đó \cite{v2n4a20}.
+
+\subsubsection{Các cấp độ phân tích cảm xúc}
+Dựa trên độ mịn (granularity) của văn bản cần phân tích, bài toán SA thường được chia thành ba cấp độ chính:
+
+\begin{itemize}
+    \item \textbf{Mức tài liệu (Document level):} Bài toán này xem xét toàn bộ văn bản (ví dụ: một bài báo, một bài review phim) như một đơn vị duy nhất và xác định cảm xúc tổng thể của nó. Giả định cơ bản là toàn bộ tài liệu chỉ tập trung vào một chủ đề duy nhất và thể hiện một quan điểm thống nhất (tích cực hoặc tiêu cực). Tuy nhiên, giả định này thường không đúng với các văn bản dài đề cập đến nhiều khía cạnh khác nhau.
+    
+    \item \textbf{Mức câu (Sentence level):} Ở cấp độ này, hệ thống phân tích từng câu riêng lẻ để xác định xem câu đó thể hiện cảm xúc gì. Nhiệm vụ này thường bao gồm hai bước: đầu tiên là xác định câu đó là chủ quan (subjective) hay khách quan (objective), sau đó phân loại cực tính của các câu chủ quan. Mặc dù chi tiết hơn mức tài liệu, phân tích mức câu vẫn gặp khó khăn khi một câu chứa nhiều ý kiến trái chiều về các đối tượng khác nhau.
+    
+    \item \textbf{Mức khía cạnh/thực thể (Aspect/Entity level):} Đây là cấp độ phân tích chi tiết nhất, còn được gọi là Phân tích cảm xúc dựa trên khía cạnh (Aspect-Based Sentiment Analysis - ABSA). Thay vì gán một nhãn chung cho cả văn bản, ABSA đi sâu vào việc xác định các khía cạnh cụ thể của thực thể được nhắc đến (ví dụ: "màn hình", "pin", "giá" của một chiếc điện thoại) và xác định cảm xúc đối với từng khía cạnh đó. Ví dụ, câu "Màn hình đẹp nhưng pin yếu" sẽ được phân tích là Tích cực đối với khía cạnh "màn hình" và Tiêu cực đối với khía cạnh "pin". Đây là cấp độ có giá trị thực tiễn cao nhất nhưng cũng là bài toán khó nhất \cite{HunEmBERT}.
+\end{itemize}
+
+\subsubsection{Các loại bài toán phân loại}
+Tùy thuộc vào mục tiêu đầu ra, bài toán SA có thể được phân loại thành:
+
+\begin{itemize}
+    \item \textbf{Phân loại cực tính (Polarity Classification):} Đây là dạng bài toán phổ biến nhất, trong đó văn bản được phân vào các lớp rời rạc như:
+    \begin{itemize}
+        \item Phân loại nhị phân (Binary): Tích cực (Positive) vs. Tiêu cực (Negative).
+        \item Phân loại đa lớp (Multi-class): Tích cực, Tiêu cực, và Trung lập (Neutral).
+    \end{itemize}
+    
+    \item \textbf{Phân loại theo thang đo (Fine-grained Sentiment Analysis):} Cảm xúc được đánh giá trên một thang đo liên tục hoặc rời rạc chi tiết hơn, ví dụ như thang điểm 5 sao (1: Rất tệ, 2: Tệ, 3: Bình thường, 4: Tốt, 5: Rất tốt). Bài toán này thường được mô hình hóa dưới dạng bài toán hồi quy (regression) hoặc phân loại thứ tự (ordinal classification).
+    
+    \item \textbf{Phân loại cảm xúc chi tiết (Emotion Detection):} Thay vì chỉ xác định cực tính (tốt/xấu), bài toán này tập trung vào việc nhận diện các trạng thái cảm xúc cụ thể của con người. Các mô hình thường dựa trên các lý thuyết tâm lý học, ví dụ như Bánh xe cảm xúc của Plutchik (Plutchik's Wheel of Emotions) bao gồm 8 cảm xúc cơ bản: Vui vẻ (Joy), Tin tưởng (Trust), Sợ hãi (Fear), Ngạc nhiên (Surprise), Buồn bã (Sadness), Ghê tởm (Disgust), Giận dữ (Anger), và Mong đợi (Anticipation). Việc phát hiện các cảm xúc này giúp hiểu sâu hơn về tâm lý người dùng, đặc biệt trong các ứng dụng như theo dõi sức khỏe tâm thần hay phân tích phản ứng chính trị \cite{HunEmBERT}.
+\end{itemize}
+
+\subsubsection{Quy trình tổng quát của hệ thống phân tích cảm xúc}
+Một hệ thống phân tích cảm xúc điển hình thường bao gồm các bước sau:
+\begin{enumerate}
+    \item \textbf{Thu thập dữ liệu (Data Collection):} Dữ liệu được thu thập từ các nguồn như mạng xã hội, trang web đánh giá, diễn đàn thông qua API hoặc các công cụ web crawling.
+    \item \textbf{Tiền xử lý (Preprocessing):} Làm sạch dữ liệu thô, bao gồm các bước như: loại bỏ thẻ HTML, chuẩn hóa bảng mã (Unicode), tách từ (word segmentation - đặc biệt quan trọng với tiếng Việt), loại bỏ từ dừng (stop words), xử lý từ viết tắt và teencode.
+    \item \textbf{Trích xuất đặc trưng (Feature Extraction):} Chuyển đổi văn bản thành dạng biểu diễn số học mà máy tính có thể hiểu được. Các phương pháp phổ biến bao gồm Bag-of-Words (BoW), TF-IDF, và các phương pháp nhúng từ (Word Embeddings) như Word2Vec, GloVe, hoặc các biểu diễn ngữ cảnh từ BERT.
+    \item \textbf{Phân loại/Huấn luyện mô hình (Classification/Model Training):} Sử dụng các thuật toán học máy (SVM, Naive Bayes) hoặc học sâu (CNN, LSTM, Transformer) để học mối quan hệ giữa các đặc trưng và nhãn cảm xúc.
+    \item \textbf{Đánh giá (Evaluation):} Đo lường hiệu suất của mô hình trên tập dữ liệu kiểm thử bằng các độ đo như Accuracy, Precision, Recall, F1-score.
+\end{enumerate}
+
+\subsection{Tình hình nghiên cứu trong và ngoài nước}
+
+\subsubsection{Tình hình nghiên cứu quốc tế}
+Lịch sử phát triển của bài toán phân loại cảm xúc văn bản gắn liền với sự tiến bộ của lĩnh vực Xử lý ngôn ngữ tự nhiên (NLP). Có thể chia quá trình này thành ba giai đoạn chính:
+
+\paragraph{Giai đoạn 1: Phương pháp dựa trên từ điển (Lexicon-based Approaches)}
+Trong giai đoạn đầu, các nghiên cứu chủ yếu dựa vào các nguồn tài nguyên ngôn ngữ như từ điển cảm xúc (sentiment lexicons). Các từ điển nổi tiếng như SentiWordNet, General Inquirer, hay LIWC cung cấp danh sách các từ kèm theo điểm số cực tính (tích cực/tiêu cực). Phương pháp này đơn giản, dễ triển khai và không yêu cầu dữ liệu huấn luyện. Tuy nhiên, nó bộc lộ hạn chế lớn khi không thể xử lý được ngữ cảnh (context), ví dụ từ "tốt" trong câu "Anh ấy làm việc tốt" là tích cực, nhưng trong câu "Tốt thôi, cứ làm theo ý bạn" (với giọng mỉa mai) lại có thể mang nghĩa tiêu cực. Hơn nữa, việc xây dựng từ điển cho từng ngôn ngữ và từng lĩnh vực cụ thể tốn rất nhiều công sức \cite{v2n4a20}.
+
+\paragraph{Giai đoạn 2: Phương pháp Học máy truyền thống (Traditional Machine Learning)}
+Sự ra đời của các thuật toán học máy đã đưa bài toán phân loại cảm xúc sang một trang mới. Các mô hình như Naive Bayes (NB), Support Vector Machine (SVM), và Maximum Entropy (MaxEnt) được sử dụng rộng rãi.
+\begin{itemize}
+    \item \textbf{Naive Bayes:} Dựa trên định lý Bayes với giả định các đặc trưng độc lập với nhau. Mặc dù đơn giản, NB thường cho kết quả khá tốt trên các bài toán phân loại văn bản cơ bản.
+    \item \textbf{Support Vector Machine (SVM):} Tìm kiếm siêu phẳng (hyperplane) tối ưu để phân tách các lớp dữ liệu. SVM thường đạt hiệu suất cao hơn NB và được coi là một trong những thuật toán tốt nhất cho phân loại văn bản trước kỷ nguyên Deep Learning.
+\end{itemize}
+Trong giai đoạn này, việc trích xuất đặc trưng (feature engineering) đóng vai trò then chốt. Các đặc trưng phổ biến bao gồm N-grams (unigrams, bigrams), Part-of-Speech (POS) tags, và TF-IDF. Tuy nhiên, các mô hình này vẫn gặp khó khăn trong việc nắm bắt các phụ thuộc xa (long-term dependencies) và ngữ nghĩa phức tạp của câu \cite{2403.08217v1}.
+
+\paragraph{Giai đoạn 3: Phương pháp Học sâu (Deep Learning)}
+Sự bùng nổ của Deep Learning đã mang lại những cải tiến vượt bậc. Các mô hình mạng nơ-ron như Convolutional Neural Networks (CNN) và Recurrent Neural Networks (RNN) (bao gồm LSTM và GRU) đã được áp dụng thành công.
+\begin{itemize}
+    \item \textbf{Word Embeddings:} Sự ra đời của Word2Vec (Mikolov et al., 2013) và GloVe (Pennington et al., 2014) cho phép biểu diễn từ dưới dạng các vector số thực dày đặc (dense vectors), nắm bắt được mối quan hệ ngữ nghĩa giữa các từ (ví dụ: vector("vua") - vector("nam") + vector("nữ") $\approx$ vector("nữ hoàng")).
+    \item \textbf{CNN:} Có khả năng trích xuất các đặc trưng cục bộ (local features) quan trọng từ văn bản.
+    \item \textbf{LSTM/GRU:} Giải quyết vấn đề biến mất đạo hàm (vanishing gradient) của RNN truyền thống, cho phép mô hình ghi nhớ thông tin trong các chuỗi văn bản dài.
+\end{itemize}
+
+\paragraph{Giai đoạn 4: Kỷ nguyên Transformer và BERT}
+Năm 2017, Vaswani và cộng sự giới thiệu kiến trúc Transformer dựa hoàn toàn trên cơ chế chú ý (Attention Mechanism), loại bỏ sự phụ thuộc vào tính tuần tự của RNN, cho phép huấn luyện song song hiệu quả hơn. Trên nền tảng này, năm 2018, Google giới thiệu BERT (Bidirectional Encoder Representations from Transformers), tạo nên một bước đột phá (state-of-the-art) trên hàng loạt tác vụ NLP.
+Khác với các mô hình trước đó chỉ đọc văn bản theo một chiều (trái sang phải hoặc phải sang trái), BERT sử dụng cơ chế Masked Language Model (MLM) để học ngữ cảnh hai chiều (bidirectional) cùng lúc. Điều này giúp BERT hiểu sâu sắc hơn ngữ nghĩa của từ trong câu. Các biến thể sau đó như RoBERTa (Robustly optimized BERT approach), XLM-R (Cross-lingual Language Model) tiếp tục cải thiện hiệu suất và khả năng hỗ trợ đa ngôn ngữ \cite{2011.10426v1, 2403.08217v1}.
+
+\subsubsection{Tình hình nghiên cứu trong nước}
+Tại Việt Nam, nghiên cứu về phân tích cảm xúc cũng đang diễn ra rất sôi động, đặc biệt là trong khoảng 5 năm trở lại đây.
+
+\paragraph{Thách thức đặc thù của tiếng Việt}
+Tiếng Việt có những đặc điểm gây khó khăn cho các mô hình NLP quốc tế khi áp dụng trực tiếp:
+\begin{itemize}
+    \item \textbf{Tách từ (Word Segmentation):} Khác với tiếng Anh dùng khoảng trắng để tách từ, tiếng Việt có nhiều từ ghép (ví dụ: "đất nước", "học sinh"). Việc xác định ranh giới từ chính xác là bước tiền xử lý quan trọng ảnh hưởng lớn đến hiệu suất mô hình.
+    \item \textbf{Dấu thanh (Tone marks):} Tiếng Việt có 6 thanh điệu, và việc gõ sai hoặc thiếu dấu (đặc biệt trên mạng xã hội) làm thay đổi hoàn toàn nghĩa của từ.
+\end{itemize}
+
+\paragraph{Các bộ dữ liệu chuẩn (Benchmark Datasets)}
+Cộng đồng nghiên cứu đã nỗ lực xây dựng và công bố các bộ dữ liệu chuẩn để thúc đẩy so sánh và đánh giá mô hình:
+\begin{itemize}
+    \item \textbf{VLSP Shared Tasks:} Các hội thảo thường niên của Câu lạc bộ Xử lý Ngôn ngữ và Tiếng nói tiếng Việt (VLSP) đã tổ chức các cuộc thi về phân tích cảm xúc (VLSP 2016, 2018), cung cấp dữ liệu quý giá cho cộng đồng.
+    \item \textbf{UIT-VSFC (Vietnamese Students’ Feedback Corpus):} Bộ dữ liệu chứa hơn 16.000 câu phản hồi của sinh viên đại học, được gán nhãn ở hai cấp độ: cảm xúc (tích cực, tiêu cực, trung lập) và chủ đề. Đây là bộ dữ liệu được sử dụng rộng rãi trong các nghiên cứu gần đây \cite{8.JFM_2025.v16i1_611-611-7397.md}.
+    \item \textbf{UIT-VSMEC:} Bộ dữ liệu tập trung vào phân loại cảm xúc chi tiết (emotion recognition) trên mạng xã hội.
+\end{itemize}
+
+\paragraph{Các mô hình và phương pháp tiếp cận}
+\begin{itemize}
+    \item \textbf{Mô hình lai (Hybrid Models):} Nhiều nghiên cứu đã kết hợp các kiến trúc Deep Learning khác nhau để tận dụng ưu điểm của từng loại. Ví dụ, nghiên cứu của \cite{8.JFM_2025.v16i1_611-611-7397.md} đề xuất mô hình kết hợp BERT với Multi-Channel CNN và GRU. Trong đó, BERT đóng vai trò tạo vector nhúng ngữ cảnh, CNN trích xuất đặc trưng cục bộ, và GRU nắm bắt thông tin chuỗi thời gian. Kết quả cho thấy mô hình lai này đạt độ chính xác cao hơn so với việc chỉ sử dụng BERT hoặc CNN/RNN riêng lẻ.
+    \item \textbf{PhoBERT:} Năm 2020, VinAI Research công bố PhoBERT, mô hình BERT đầu tiên được huấn luyện trên quy mô lớn (20GB văn bản) dành riêng cho tiếng Việt. PhoBERT đã xác lập kỷ lục mới (SOTA) trên nhiều tác vụ NLP tiếng Việt, bao gồm phân loại văn bản, gán nhãn từ loại, và nhận diện thực thể tên riêng. Sự ra đời của PhoBERT giúp các nhà nghiên cứu trong nước không còn phải phụ thuộc hoàn toàn vào các mô hình đa ngôn ngữ (như mBERT) vốn thường có hiệu suất thấp hơn trên dữ liệu tiếng Việt \cite{2501.08758v1}.
+    \item \textbf{Kết hợp tri thức từ điển:} Một hướng nghiên cứu khác là kết hợp sức mạnh của Deep Learning với tri thức từ các từ điển cảm xúc (như VietSentiWordNet). Nghiên cứu \cite{2501.08758v1} đã chỉ ra rằng việc tích hợp thông tin từ điển vào mô hình PhoBERT giúp cải thiện đáng kể khả năng phân loại, đặc biệt là đối với các từ hiếm hoặc mang nghĩa bóng.
+\end{itemize}
+
+\subsection{Phát biểu bài toán}
+
+\subsubsection{Định nghĩa hình thức}
+Bài toán phân loại cảm xúc văn bản có thể được mô hình hóa như một bài toán học có giám sát (Supervised Learning).
+Cho tập dữ liệu huấn luyện $D = \{(x_1, y_1), (x_2, y_2), ..., (x_N, y_N)\}$, trong đó:
+\begin{itemize}
+    \item $x_i$ là văn bản đầu vào thứ $i$, được biểu diễn dưới dạng chuỗi các token $x_i = (w_1, w_2, ..., w_T)$ với $T$ là độ dài tối đa của chuỗi.
+    \item $y_i \in C$ là nhãn cảm xúc thực tế tương ứng, với $C = \{0, 1, ..., K-1\}$ là tập hợp $K$ lớp cảm xúc. Trong bài toán này, $K=3$ tương ứng với \{Tiêu cực, Trung lập, Tích cực\}.
+\end{itemize}
+
+Mục tiêu là tìm kiếm một hàm ánh xạ $f: X \rightarrow \mathbb{R}^K$ (mô hình) được tham số hóa bởi $\theta$, sao cho với mỗi đầu vào $x$, mô hình dự đoán một phân phối xác suất trên các lớp $C$:
+$$ \hat{y} = f(x; \theta) = P(y|x; \theta) $$
+Nhãn dự đoán cuối cùng $\hat{c}$ được chọn là lớp có xác suất cao nhất:
+$$ \hat{c} = \arg\max_{k \in C} P(y=k|x; \theta) $$
+
+\subsubsection{Mô hình hóa với BERT}
+Trong luận văn này, hàm $f$ được xây dựng dựa trên kiến trúc BERT (hoặc PhoBERT). Quá trình xử lý bao gồm các bước:
+\begin{enumerate}
+    \item \textbf{Biểu diễn đầu vào:} Văn bản $x$ được thêm các token đặc biệt `[CLS]` ở đầu và `[SEP]` ở cuối. Mỗi token được chuyển đổi thành vector nhúng (embedding) là tổng của Token Embedding, Segment Embedding và Position Embedding.
+    \item \textbf{Mã hóa ngữ cảnh (Encoder):} Chuỗi vector nhúng được đưa qua $L$ lớp Transformer Encoder của BERT để tạo ra các biểu diễn ngữ cảnh $H = (h_{[CLS]}, h_1, ..., h_T)$. Vector $h_{[CLS]}$ tại vị trí đầu tiên được coi là biểu diễn ngữ nghĩa của toàn bộ câu.
+    \item \textbf{Lớp phân loại (Classifier):} Vector $h_{[CLS]}$ được đưa qua một lớp kết nối đầy đủ (Fully Connected Layer) và hàm Softmax để tính xác suất:
+    $$ P(y|x) = \text{softmax}(W \cdot h_{[CLS]} + b) $$
+    trong đó $W \in \mathbb{R}^{K \times d_{model}}$ và $b \in \mathbb{R}^K$ là các tham số trọng số và bias của lớp phân loại.
+\end{enumerate}
+
+\subsubsection{Hàm mục tiêu và Tối ưu hóa}
+Để huấn luyện mô hình, chúng tôi sử dụng hàm mất mát Cross-Entropy (Cross-Entropy Loss) để đo lường sự sai biệt giữa phân phối xác suất dự đoán $\hat{y}$ và nhãn thực tế $y$ (dưới dạng one-hot vector):
+$$ \mathcal{L}(\theta) = - \frac{1}{N} \sum_{i=1}^{N} \sum_{k=0}^{K-1} \mathbb{I}(y_i = k) \log P(y_i=k|x_i; \theta) $$
+Quá trình tối ưu hóa tham số $\theta$ (bao gồm cả tham số của BERT và lớp phân loại) được thực hiện thông qua thuật toán lan truyền ngược (Backpropagation) và các biến thể của Gradient Descent (như AdamW), nhằm cực tiểu hóa hàm mất mát $\mathcal{L}(\theta)$.
+
+\subsubsection{Mục tiêu nghiên cứu cụ thể}
+Luận văn tập trung giải quyết các vấn đề cụ thể sau:
+\begin{enumerate}
+    \item \textbf{Khảo sát và Lựa chọn mô hình:} So sánh hiệu quả của các mô hình tiền huấn luyện đa ngôn ngữ (mBERT, XLM-R) và đơn ngữ tiếng Việt (PhoBERT) để xác định kiến trúc tối ưu cho dữ liệu phản hồi sinh viên.
+    \item \textbf{Tối ưu hóa quá trình Fine-tuning:} Nghiên cứu ảnh hưởng của các siêu tham số (hyperparameters) như độ dài chuỗi tối đa (max sequence length), tốc độ học (learning rate), và kích thước batch (batch size) đến hiệu suất hội tụ của mô hình.
+    \item \textbf{Xử lý đặc trưng ngôn ngữ:} Đề xuất quy trình tiền xử lý dữ liệu chuyên biệt để xử lý các vấn đề nhiễu trong tiếng Việt như teencode, từ viết tắt, và emoji, nhằm nâng cao chất lượng dữ liệu đầu vào.
+    \item \textbf{Phân tích sai số (Error Analysis):} Phân tích chi tiết ma trận nhầm lẫn (Confusion Matrix) để nhận diện các mẫu câu mà mô hình thường dự đoán sai (ví dụ: câu chứa từ phủ định phức tạp, câu mỉa mai), từ đó đề xuất hướng cải thiện.
+\end{enumerate}
+
+\subsection{Thách thức kỹ thuật và khó khăn}
+
+\subsubsection{Thách thức về ngôn ngữ (Linguistic Challenges)}
+\begin{itemize}
+    \item \textbf{Tính đa nghĩa và phụ thuộc ngữ cảnh:} Tiếng Việt là ngôn ngữ giàu ngữ nghĩa. Một từ có thể mang nghĩa hoàn toàn khác nhau tùy thuộc vào ngữ cảnh. Ví dụ, từ "kinh" trong "kinh khủng" (tiêu cực) và "kinh điển" (tích cực). Mô hình cần có khả năng hiểu ngữ cảnh sâu để phân biệt các trường hợp này.
+    \item \textbf{Phủ định (Negation):} Các từ phủ định như "không", "chẳng", "chả" có thể đảo ngược hoàn toàn cực tính của câu. Tuy nhiên, vị trí và phạm vi ảnh hưởng của từ phủ định trong tiếng Việt khá phức tạp. Ví dụ: "Món này không phải là không ngon" (tích cực) khác với "Món này không ngon" (tiêu cực).
+    \item \textbf{Mỉa mai và nói ngược (Sarcasm/Irony):} Đây là thách thức lớn nhất đối với mọi hệ thống phân tích cảm xúc. Người dùng mạng xã hội thường sử dụng ngôn ngữ mỉa mai, ví dụ: "Phục vụ tuyệt vời quá, đợi có 2 tiếng thôi" (thực chất là tiêu cực). Để phát hiện được điều này, mô hình cần hiểu được sự mâu thuẫn giữa các từ ngữ hoặc cần thêm thông tin ngữ cảnh rộng hơn.
+\end{itemize}
+
+\subsubsection{Thách thức về dữ liệu (Data Challenges)}
+\begin{itemize}
+    \item \textbf{Nhiễu dữ liệu (Noise):} Dữ liệu từ mạng xã hội thường rất "bẩn". Người dùng thường xuyên viết sai chính tả, không dấu, sử dụng teencode (ví dụ: "hok" thay vì "không", "j" thay vì "gì"), viết tắt ("k" thay vì "không"), và chèn nhiều biểu tượng cảm xúc (emoji). Việc chuẩn hóa dữ liệu này đòi hỏi các kỹ thuật tiền xử lý phức tạp \cite{9741-23848-2-PB}.
+    \item \textbf{Đa ngôn ngữ (Code-switching):} Người Việt thường xuyên chèn tiếng Anh vào câu nói (ví dụ: "Món này rất fresh", "Service quá bad"). Mô hình cần có khả năng xử lý đồng thời cả hai ngôn ngữ.
+    \item \textbf{Mất cân bằng dữ liệu (Imbalanced Data):} Trong các bộ dữ liệu thực tế, số lượng mẫu thuộc lớp "Bình thường" hoặc "Tích cực" thường áp đảo so với lớp "Tiêu cực". Điều này khiến mô hình có xu hướng thiên vị các lớp đa số và dự đoán kém trên lớp thiểu số.
+\end{itemize}
+
+\subsubsection{Thách thức về tài nguyên tính toán}
+Các mô hình dựa trên BERT thường có số lượng tham số rất lớn (hàng trăm triệu tham số). Việc huấn luyện và tinh chỉnh (fine-tuning) đòi hỏi tài nguyên phần cứng mạnh mẽ (GPU/TPU) và thời gian tính toán lớn. Việc triển khai các mô hình này trên các thiết bị có tài nguyên hạn chế (như điện thoại di động) cũng là một bài toán khó.
+
+\subsection{Ý nghĩa khoa học và thực tiễn}
+
+\subsubsection{Ý nghĩa khoa học}
+Luận văn đóng góp vào kho tàng nghiên cứu về Xử lý ngôn ngữ tự nhiên tiếng Việt trên các phương diện sau:
+\begin{enumerate}
+    \item \textbf{Kiểm chứng hiệu quả của Transfer Learning:} Cung cấp bằng chứng thực nghiệm về hiệu quả của việc áp dụng các mô hình ngôn ngữ tiền huấn luyện (Pre-trained Language Models) cho bài toán phân loại văn bản trong miền dữ liệu đặc thù (giáo dục). Kết quả nghiên cứu sẽ làm rõ mức độ cải thiện của PhoBERT so với các mô hình đa ngôn ngữ (mBERT) và các phương pháp truyền thống.
+    \item \textbf{Đề xuất quy trình xử lý tối ưu:} Xây dựng một quy trình chuẩn hóa (pipeline) từ tiền xử lý, trích xuất đặc trưng đến huấn luyện và đánh giá mô hình cho tiếng Việt. Quy trình này giải quyết các thách thức cụ thể như xử lý từ ghép, chuẩn hóa teencode và xử lý mất cân bằng dữ liệu.
+    \item \textbf{Phân tích sâu về đặc trưng ngôn ngữ:} Thông qua việc phân tích lỗi (Error Analysis), luận văn chỉ ra những hạn chế hiện tại của các mô hình SOTA trong việc xử lý các cấu trúc ngữ pháp phức tạp, câu phủ định và mỉa mai trong tiếng Việt, từ đó gợi mở các hướng nghiên cứu tiếp theo như tích hợp tri thức ngôn ngữ học vào mô hình Deep Learning.
+\end{enumerate}
+
+\subsubsection{Ý nghĩa thực tiễn}
+Kết quả của luận văn có khả năng ứng dụng rộng rãi trong thực tế, đặc biệt trong bối cảnh chuyển đổi số:
+\begin{enumerate}
+    \item \textbf{Trong lĩnh vực Giáo dục (Smart Education):}
+    \begin{itemize}
+        \item Xây dựng hệ thống \textit{Lắng nghe sinh viên thời gian thực}: Tự động phân tích hàng nghìn phản hồi từ sinh viên sau mỗi học kỳ để trích xuất các vấn đề nổi cộm (ví dụ: "giảng viên dạy nhanh", "cơ sở vật chất xuống cấp").
+        \item Hỗ trợ ra quyết định: Giúp ban giám hiệu và giảng viên điều chỉnh phương pháp giảng dạy và cải thiện chương trình đào tạo dựa trên dữ liệu định lượng khách quan thay vì cảm tính.
+    \end{itemize}
+    \item \textbf{Trong lĩnh vực Kinh doanh (Customer Insight):}
+    \begin{itemize}
+        \item Hệ thống \textit{Social Listening}: Các doanh nghiệp có thể áp dụng mô hình để theo dõi sức khỏe thương hiệu (Brand Health) trên mạng xã hội, phát hiện sớm các khủng hoảng truyền thông từ các bình luận tiêu cực.
+        \item Cá nhân hóa dịch vụ: Tích hợp điểm số cảm xúc vào hồ sơ khách hàng (Customer 360) để phân loại khách hàng hài lòng/không hài lòng, từ đó có chiến lược chăm sóc phù hợp.
+    \end{itemize}
+    \item \textbf{Trong lĩnh vực Xã hội:}
+    \begin{itemize}
+        \item Phát hiện nội dung độc hại: Ứng dụng vào các hệ thống kiểm duyệt nội dung tự động để lọc bỏ các bình luận thù ghét (hate speech), bắt nạt trực tuyến (cyberbullying), góp phần làm sạch môi trường mạng.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Kết luận chương 1}
+Chương 1 đã trình bày tổng quan về bài toán phân tích cảm xúc, tầm quan trọng của nó trong kỷ nguyên số, và những thách thức đặc thù khi xử lý tiếng Việt. Chúng ta cũng đã điểm qua tình hình nghiên cứu trong và ngoài nước, từ các phương pháp truyền thống đến các mô hình học sâu hiện đại như BERT. Trên cơ sở đó, luận văn xác định mục tiêu là ứng dụng mô hình PhoBERT để giải quyết bài toán phân loại cảm xúc trên dữ liệu tiếng Việt. Chương tiếp theo sẽ đi sâu vào cơ sở lý thuyết nền tảng, bao gồm mạng nơ-ron, cơ chế Attention và kiến trúc Transformer, làm tiền đề cho việc xây dựng giải pháp.
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
+
